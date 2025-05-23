@@ -1,0 +1,42 @@
+@model vet360.Models.Usuario
+
+@{
+    ViewBag.Title = "Registro de Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4 text-primary">Registrarse como Cliente</h2>
+
+        @using (Html.BeginForm("Registrarse", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nombre)
+                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Nombre)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Correo)
+                @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", type = "email" })
+                @Html.ValidationMessageFor(m => m.Correo)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Contraseña)
+                @Html.PasswordFor(m => m.Contraseña, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Contraseña)
+            </div>
+
+            <button type="submit" class="btn btn-success mt-3">Registrarse</button>
+        }
+
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-warning mt-3">@ViewBag.Mensaje</div>
+        }
+    </div>
+</div>

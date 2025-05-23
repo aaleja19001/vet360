@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using vet360.Data;
+using vet360.Models;
 
 namespace vet360.Controllers
 {
@@ -37,7 +38,6 @@ namespace vet360.Controllers
             // Crear cookie de autenticación
             FormsAuthentication.SetAuthCookie(usuario.Id.ToString(), false);
 
-            // Guardar rol en cookie personalizada (opcional)
             var authTicket = new FormsAuthenticationTicket(
                 1,
                 usuario.Id.ToString(),
@@ -51,11 +51,12 @@ namespace vet360.Controllers
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             Response.Cookies.Add(cookie);
 
-            // Redirigir según rol
             if (usuario.Rol.Nombre == "Veterinario")
                 return RedirectToAction("Index", "Veterinario");
             else if (usuario.Rol.Nombre == "Cliente")
                 return RedirectToAction("Index", "Cliente");
+            else if (usuario.Rol.Nombre == "Admin")
+                return RedirectToAction("Index", "Admin");
 
             return RedirectToAction("Index", "Home");
         }
@@ -70,5 +71,7 @@ namespace vet360.Controllers
         {
             return View();
         }
+
+       
     }
 }

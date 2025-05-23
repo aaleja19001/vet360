@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Panel de Administración";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded border-0">
+        <div class="card-body text-center">
+            <h1 class="display-4 text-primary mb-3">¡Bienvenido, Administrador! 👑</h1>
+            <p class="lead text-secondary">Desde este panel podés gestionar todo el sistema.</p>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card bg-light border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Usuarios</h5>
+                            <p class="card-text">Gestioná los usuarios del sistema.</p>
+                            <a href="@Url.Action("Index", "Usuario")" class="btn btn-outline-primary">Ver usuarios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card bg-light border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Reportes</h5>
+                            <p class="card-text">Visualizá reportes de actividad y uso.</p>
+                            <a href="@Url.Action("Index", "Admin")" class="btn btn-outline-success">Ver reportes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card bg-light border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Configuración</h5>
+                            <p class="card-text">Cambiá parámetros del sistema.</p>
+                            <a href="@Url.Action("Index", "Admin")" class="btn btn-outline-warning">Ir a configuración</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4" />
+            <a href="@Url.Action("Logout", "Home")" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+    </div>
+</div>

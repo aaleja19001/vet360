@@ -103,6 +103,15 @@
                                 <a class="nav-link" href="@Url.Action("Pacientes", "Veterinario")">Pacientes</a>
                             </li>
                         }
+                        else if (rol == "Admin")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("index", "Usuario")">Usuarios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("index", "Mascotas")">Mascotas</a>
+                            </li>
+                        }
 
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Logout", "Cuenta")">Cerrar sesión</a>

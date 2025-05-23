@@ -314,10 +314,12 @@
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\HistorialMedicoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MascotasController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
@@ -420,6 +422,8 @@
     <Content Include="Views\Error\AccesoDenegado.cshtml" />
     <Content Include="Views\Cuenta\AccesoDenegado.cshtml" />
     <Content Include="Views\Cita\Agendar.cshtml" />
+    <Content Include="Views\Admin\index.cshtml" />
+    <Content Include="Views\Home\Registrarse.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
