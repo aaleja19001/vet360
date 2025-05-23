@@ -1,0 +1,33 @@
+@model IEnumerable<vet360.Models.HistorialMedico>
+
+@{
+    ViewBag.Title = "Historial Médico de " + ViewBag.MascotaNombre;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Diagnóstico</th>
+            <th>Tratamiento</th>
+            <th>Veterinario</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderByDescending(h => h.FechaRegistro))
+        {
+            <tr>
+                <td>@item.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                <td>@item.Diagnostico</td>
+                <td>@item.Tratamiento</td>
+                <td>@item.Veterinario.Nombre</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
+</div>

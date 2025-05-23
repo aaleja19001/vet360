@@ -1,0 +1,28 @@
+@model vet360.Models.Mascota
+
+@{
+    ViewBag.Title = "Registrar Mascota";
+}
+
+<h2>Registrar Mascota</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Nombre)
+    @Html.TextBoxFor(m => m.Nombre)
+    <br />
+
+    @Html.LabelFor(m => m.Especie)
+    @Html.TextBoxFor(m => m.Especie)
+    <br />
+
+    @Html.LabelFor(m => m.Raza)
+    @Html.TextBoxFor(m => m.Raza)
+    <br />
+
+    @Html.LabelFor(m => m.Edad)
+    @Html.TextBoxFor(m => m.Edad)
+    <br />
+
+    <input type="submit" value="Registrar" />
+}

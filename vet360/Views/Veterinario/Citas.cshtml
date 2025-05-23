@@ -1,0 +1,48 @@
+@model IEnumerable<vet360.Models.Cita>
+@{
+    ViewBag.Title = "Citas Programadas";
+    var fechaConsulta = (DateTime)ViewBag.FechaConsulta;
+}
+
+<h2>@ViewBag.Title - Semana del @fechaConsulta.ToString("dd/MM/yyyy")</h2>
+
+<div class="mb-3">
+    @using (Html.BeginForm("Citas", "Veterinario", FormMethod.Get))
+    {
+        <div class="form-inline">
+            <label>Fecha inicio:</label>
+            <input type="date" name="fecha" value="@fechaConsulta.ToString("yyyy-MM-dd")" class="form-control ml-2 mr-3" />
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+        </div>
+    }
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Mascota</th>
+            <th>Dueño</th>
+            <th>Servicio</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Horario.Fecha.ToString("dd/MM/yyyy")</td>
+                <td>@item.Horario.Fecha.ToString("HH:mm")</td>
+                <td>@item.Mascota.Nombre</td>
+                <td>@item.Usuario.Nombre</td>
+                <td>@item.Servicio.NombreServicioVet</td>
+                <td>
+                    <span class="badge @(item.Estado == "Confirmada" ? "badge-success" : "badge-secondary")">
+                        @item.Estado
+                    </span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

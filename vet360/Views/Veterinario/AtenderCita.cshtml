@@ -1,0 +1,81 @@
+@model vet360.Models.AtenderCitaViewModel
+
+@{
+    ViewBag.Title = "Atender Cita";
+}
+
+<h2>Atender Cita</h2>
+<h4>@Model.Mascota.Nombre - @Model.Cita.Horario.Fecha.ToString("dd/MM/yyyy HH:mm")</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Información de la Mascota</h4>
+        <dl class="dl-horizontal">
+            <dt>Nombre:</dt>
+            <dd>@Model.Mascota.Nombre</dd>
+            <dt>Especie:</dt>
+            <dd>@Model.Mascota.Especie</dd>
+            <dt>Raza:</dt>
+            <dd>@Model.Mascota.Raza</dd>
+            <dt>Edad:</dt>
+            <dd>@Model.Mascota.Edad años</dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <h4>Historial Médico</h4>
+        @if (Model.Historial.Any())
+        {
+            <div style="max-height: 300px; overflow-y: auto;">
+                @foreach (var item in Model.Historial.OrderByDescending(h => h.FechaRegistro))
+                {
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            @item.FechaRegistro.ToString("dd/MM/yyyy")
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-title">@item.Diagnostico</h6>
+                            <p class="card-text">@item.Tratamiento</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No hay historial registrado.</p>
+        }
+    </div>
+</div>
+
+<hr />
+
+<h4>Registrar Nueva Atención</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.NuevoHistorial.MascotaId)
+    @Html.HiddenFor(model => model.NuevoHistorial.UsuarioId)
+    @Html.HiddenFor(model => model.NuevoHistorial.CitaId)
+    @Html.HiddenFor(model => model.NuevoHistorial.FechaRegistro)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NuevoHistorial.Diagnostico, htmlAttributes: new { @class = "control-label" })
+        @Html.TextAreaFor(model => model.NuevoHistorial.Diagnostico, new { @class = "form-control", rows = 3 })
+        @Html.ValidationMessageFor(model => model.NuevoHistorial.Diagnostico, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NuevoHistorial.Tratamiento, htmlAttributes: new { @class = "control-label" })
+        @Html.TextAreaFor(model => model.NuevoHistorial.Tratamiento, new { @class = "form-control", rows = 3 })
+        @Html.ValidationMessageFor(model => model.NuevoHistorial.Tratamiento, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar Atención" class="btn btn-success" />
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+    </div>
+
+    @Html.HiddenFor(model => model.Cita.Id)
+}

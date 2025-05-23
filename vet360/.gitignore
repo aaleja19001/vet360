@@ -1,0 +1,14 @@
+# Archivos y carpetas de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Carpetas de compilación
+bin/
+obj/
+
+# Archivos de publicación
+publish/
+
+# Otros
+*.log

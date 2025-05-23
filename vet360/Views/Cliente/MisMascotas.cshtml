@@ -1,0 +1,25 @@
+@model IEnumerable<vet360.Models.Mascota>
+
+@{
+    ViewBag.Title = "Mis Mascotas";
+}
+
+<h2>Mis Mascotas</h2>
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Raza</th>
+        <th>Edad</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Especie</td>
+            <td>@item.Raza</td>
+            <td>@item.Edad</td>
+        </tr>
+    }
+</table>

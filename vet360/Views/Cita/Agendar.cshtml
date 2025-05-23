@@ -1,0 +1,80 @@
+﻿@model vet360.Models.Cita
+@{
+    ViewData["Title"] = "Agendar Nueva Cita";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">🐾 Agendar Nueva Cita Veterinaria</h3>
+                </div>
+                <div class="card-body p-4 bg-light">
+                    <form asp-action="Agendar" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <!-- Veterinario -->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.VeterinarioId, "Veterinario", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("VeterinarioId", (SelectList)ViewBag.VeterinarioId, "Seleccione un veterinario", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.VeterinarioId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+
+                        <!-- Horario -->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HorarioId, "Horario Disponible", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("HorarioId", (SelectList)ViewBag.HorarioId, "Seleccione un horario", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HorarioId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <!-- Mascota -->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MascotaId, "Mascota", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("MascotaId", (SelectList)ViewBag.MascotaId, "Seleccione una mascota", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MascotaId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <!-- Servicio -->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ServicioId, "Servicio", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("ServicioId", (SelectList)ViewBag.ServicioId, "Seleccione un servicio", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ServicioId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+
+                        <!-- Observaciones -->
+                        <div class="mb-4">
+                            <label asp-for="Observaciones" class="form-label">📝 Observaciones</label>
+                            <textarea asp-for="Observaciones" class="form-control" rows="3" placeholder="Notas importantes sobre tu mascota..."></textarea>
+                            <span asp-validation-for="Observaciones" class="text-danger"></span>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-calendar-check-fill me-2"></i> Agendar Cita
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-muted text-center small">
+                    ¡Tu mascota te lo va a agradecer! 🐾
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

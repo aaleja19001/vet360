@@ -1,0 +1,54 @@
+﻿@model IEnumerable<vet360.Models.Cita>
+
+@{
+    ViewBag.Title = "Mis Citas";
+}
+
+<h2>Mis Citas</h2>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🗓️ Mis Citas</h2>
+
+    @if (TempData["MensajeExito"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@TempData["MensajeExito"]</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>📅 Fecha</th>
+                    <th>⏰ Hora</th>
+                    <th>📌 Estado</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Horario.Fecha.ToShortDateString()</td>
+                        <td>@item.Horario.HoraInicio.ToString("hh\\:mm")</td>
+                        <td>
+                            @if (item.Estado == "Pendiente")
+                            {
+                                <span class="badge bg-warning text-dark">Pendiente</span>
+                            }
+                            else if (item.Estado == "Completada")
+                            {
+                                <span class="badge bg-success">Completada</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">@item.Estado</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

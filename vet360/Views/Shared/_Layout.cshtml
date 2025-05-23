@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Clínica Veterinaria</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <style>
+        .navbar-custom {
+            background-color: #5cb85c;
+            border: none;
+        }
+
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-nav > li > a {
+                color: white !important;
+                font-weight: bold;
+            }
+
+        .navbar-logo {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            color: #666;
+        }
+
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            margin: 0;
+            justify-content: flex-end
+        }
+
+            .navbar-nav > li {
+                list-style: none;
+            }
+
+        .navbar-text {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav > li > a {
+            color: white !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="@Url.Action("Index", "Home")">
+                <img src="~/Content/imagenes/logo.jpg" alt="Logo" class="navbar-logo" />
+                Clínica Vet
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <ul class="navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var ticket = ((System.Web.Security.FormsIdentity)User.Identity).Ticket;
+                        var rol = ticket.UserData;
+                        var nombre = ticket.Name;
+
+                        <li class="nav-item">
+                            <span class="navbar-text me-3">
+                                <i class="bi bi-person-circle"></i> Hola, @nombre
+                            </span>
+                        </li>
+
+                        if (rol == "Cliente")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("MisMascotas", "Mascotas")">Mis Mascotas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Agendar", "Cita")">Agendar Cita</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("MisCitas", "Cliente")">Mis Citas</a>
+                            </li>
+                        }
+                        else if (rol == "Veterinario")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Agenda", "Veterinario")">Agenda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Pacientes", "Veterinario")">Pacientes</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Logout", "Cuenta")">Cerrar sesión</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Login", "Cuenta")">Iniciar sesión</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container body-content" style="margin-top: 70px;">
+        @RenderBody()
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Clínica Veterinaria</p>
+        </footer>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+    </html>

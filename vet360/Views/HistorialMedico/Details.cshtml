@@ -1,0 +1,66 @@
+﻿@model vet360.Models.HistorialMedico
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HistorialMedico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cita.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cita.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascota.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mascota.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Veterinario.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Veterinario.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diagnostico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diagnostico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tratamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tratamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

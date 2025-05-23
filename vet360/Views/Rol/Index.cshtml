@@ -1,0 +1,29 @@
+@model IEnumerable<vet360.Models.Rol>
+
+<h2>Lista de Roles</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+            <td>@(item.Activo ? "Activo" : "Inactivo")</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.RolId }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.RolId }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.RolId })
+            </td>
+        </tr>
+    }
+</table>
